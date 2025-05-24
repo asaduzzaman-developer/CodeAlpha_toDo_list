@@ -1,65 +1,298 @@
+/* Modern CSS Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #6366f1;
+  --primary-hover: #4f46e5;
+  --secondary-color: #f3f4f6;
+  --text-color: #1f2937;
+  --text-light: #6b7280;
+  --success-color: #10b981;
+  --danger-color: #ef4444;
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   min-height: 100vh;
-  background-color: #f0f0f0;
-  padding-top: 2rem;
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  padding: 2rem 1rem;
+  color: var(--text-color);
+  line-height: 1.5;
 }
+
 .todo-container {
-  background: #fff;
+  background: rgba(255, 255, 255, 0.95);
   padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: var(--shadow-lg);
   width: 100%;
-  max-width: 500px;
+  max-width: 600px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease;
 }
+
+.todo-container:hover {
+  transform: translateY(-2px);
+}
+
 h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  font-size: 1.875rem;
+  font-weight: 700;
 }
+
 form {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
+
 input[type="text"] {
   flex: 1;
-  padding: 0.5rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: 2px solid #e5e7eb;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  background: var(--secondary-color);
 }
+
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
 button {
-  padding: 0.5rem 1rem;
+  padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 5px;
-  background-color: #007bff;
+  border-radius: 8px;
+  background-color: var(--primary-color);
   color: white;
   cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
 button:hover {
-  background-color: #0056b3;
+  background-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
+
+button:active {
+  transform: translateY(0);
+}
+
 ul {
   list-style: none;
-  padding: 0;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
 }
+
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border-bottom: 1px solid #eee;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+  border: 1px solid #e5e7eb;
 }
+
+li:hover {
+  box-shadow: var(--shadow);
+  transform: translateX(4px);
+}
+
 .completed {
   text-decoration: line-through;
-  color: gray;
+  color: var(--text-light);
+  background: var(--secondary-color);
 }
+
+.task-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
 .task-actions button {
-  margin-left: 0.5rem;
-  background-color: #6c757d;
+  padding: 0.5rem;
+  font-size: 0.875rem;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
+
+.task-actions button:disabled,
+.task-actions button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  pointer-events: none;
+}
+
 .task-actions button:hover {
-  background-color: #5a6268;
+  background-color: #e5e7eb;
+}
+
+.task-actions button:disabled:hover,
+.task-actions button.disabled:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  transform: none;
+}
+
+.task-actions button.complete-btn:hover {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.task-actions button.delete-btn:hover {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+  .todo-container {
+    padding: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  form {
+    flex-direction: column;
+  }
+
+  button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  li {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .task-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+/* Animation for new tasks */
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+li {
+  animation: slideIn 0.3s ease-out;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-light);
+}
+
+.empty-state i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 1.1rem;
+}
+
+/* Edit input styles */
+.edit-input {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 2px solid var(--primary-color);
+  font-size: 1rem;
+  font-family: inherit;
+  background: white;
+  margin-right: 0.5rem;
+  display: none;
+}
+
+.edit-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+/* Improve task text interaction */
+li span {
+  flex: 1;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  margin-right: 0.5rem;
+}
+
+li span:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Improve button states */
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Add focus styles for better accessibility */
+:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Add smooth transitions for all interactive elements */
+button, input, li {
+  transition: all 0.2s ease;
+}
+
+/* Improve mobile touch targets */
+@media (max-width: 640px) {
+  button {
+    min-height: 44px;
+  }
+  
+  li span {
+    padding: 0.75rem;
+  }
+  
+  .task-actions button {
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
