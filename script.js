@@ -116,7 +116,8 @@ function renderTasks() {
         const emptyState = document.createElement("div");
         emptyState.className = "empty-state";
         emptyState.innerHTML = `
-            <img src="image/8632.jpg">
+            <img src="image/tiny-programmers-working-with-system-error-computer-monitor-internet-flat-vector-illustration-progra/8632.jpg" alt="No tasks illustration">
+            <p>No tasks yet! Add one above.</p>
         `;
         list.appendChild(emptyState);
         return;
