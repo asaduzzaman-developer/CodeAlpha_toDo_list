@@ -116,8 +116,7 @@ function renderTasks() {
         const emptyState = document.createElement("div");
         emptyState.className = "empty-state";
         emptyState.innerHTML = `
-            <i class="ri-inbox-line"></i>
-            <p>No tasks yet! Add one above.</p>
+            <img src="image/8632.jpg">
         `;
         list.appendChild(emptyState);
         return;
